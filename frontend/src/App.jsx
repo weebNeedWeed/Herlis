@@ -2,11 +2,18 @@ import Button from "./components/Button";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
+import DefaultLayout from "./components/ui/DefaultLayout";
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <HomePage />
+        element: <DefaultLayout />,
+        children: [
+            {
+                index:true,
+                element: <HomePage />
+            }
+        ]
     },
     {
         path: "*",
