@@ -1,7 +1,7 @@
 import { IoIosArrowBack} from "react-icons/io";
 import { BiHome } from "react-icons/bi";
 import MenuItem from "./MenuItem";
-import { TbError404 } from "react-icons/tb";
+import { IoChatbubblesOutline } from "react-icons/io5";
 
 function SideMenu() {
     return (
@@ -15,7 +15,7 @@ function SideMenu() {
             <hr className="bg-white w-full"/>
         
             <MenuItem to="/" label="Trang chủ" icon={<BiHome className="text-xl"/>}/>
-            <MenuItem to="/caigido" label="Something" icon={<TbError404 className="text-xl"/>}/>
+            <MenuItem to="/chatbot" label="Chat bot" icon={<IoChatbubblesOutline className="text-xl"/>}/>
         </div>
     );
 }

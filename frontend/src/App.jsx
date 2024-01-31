@@ -2,6 +2,7 @@ import Button from "./components/Button";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
+import ChatBotPage from "./pages/ChatBotPage/ChatBotPage";
 import DefaultLayout from "./components/ui/DefaultLayout";
 
 const router = createBrowserRouter([
@@ -12,6 +13,10 @@ const router = createBrowserRouter([
             {
                 index:true,
                 element: <HomePage />
+            },
+            {
+                path: "chatbot",
+                element: <ChatBotPage />
             }
         ]
     },
