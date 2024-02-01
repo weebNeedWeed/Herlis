@@ -3,10 +3,12 @@ import SendMessage from "./SendMessage";
 
 function ChatBotPage() {
   return (
-    <div className="App flex ">
-      <div className="w-full ">
-        <Conversation></Conversation>
-        <SendMessage></SendMessage>
+    <div className="flex flex-col">
+      <div>
+        <Conversation />
+      </div>
+      <div className="sticky bottom-0">
+        <SendMessage />
       </div>
     </div>
   );
