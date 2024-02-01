@@ -1,13 +1,13 @@
 import { useState } from "react";
 
-function BotchatBox({ children, messageRole }) {
-  const [currentRole, setRole] = useState(messageRole);
+function BotchatBox({ children, messageInfo }) {
+  const [currentMessage, setMessage] = useState(messageInfo);
 
   const alignmentClass =
-    currentRole == "user" ? "justify-end" : "justify-start";
+    currentMessage.role == "user" ? "justify-end" : "justify-start";
 
   const boxStyle =
-    currentRole == "user"
+    currentMessage.role == "user"
       ? { box: "bg-neutral-100 rounded-s-xl rounded-se-xl", text: "text-black" }
       : { box: "bg-teal-500 rounded-e-xl rounded-es-xl", text: "text-white" };
 
@@ -18,9 +18,11 @@ function BotchatBox({ children, messageRole }) {
       >
         <div className="flex items-center space-x-2 rtl:space-x-reverse">
           <div className={`chat-header ${boxStyle.text} pb-2`}>
-            {currentRole}
+            {currentMessage.role}
           </div>
-          <div className={`chat-header ${boxStyle.text} pb-2`}>11:46</div>
+          <div className={`chat-header ${boxStyle.text} pb-2`}>
+            {currentMessage.time}
+          </div>
         </div>
 
         <div className={`text-sm font-normal py-2.5 ${boxStyle.text}`}>
