@@ -10,7 +10,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../../../firebase";
 
-function Conversation() {
+function Conversation({ currentConversationId }) {
   const [messages, setMessages] = useState([]);
 
   const messagesEndRef = useRef(null);
@@ -24,25 +24,30 @@ function Conversation() {
   }, [messages]);
 
   useEffect(() => {
-    const q = query(collection(db, "Chat text"), orderBy("time"), limit(50));
+    if (!currentConversationId) return;
 
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      const newMessages = [];
-      querySnapshot.forEach((doc) => {
+    const messagesQuery = query(
+      collection(db, `Conversations/${currentConversationId}/Messages`),
+      orderBy("time"),
+      limit(50)
+    );
+
+    const unsubscribe = onSnapshot(messagesQuery, (querySnapshot) => {
+      const newMessages = querySnapshot.docs.map((doc) => {
         const data = doc.data();
-        const time = data.time.toDate().toLocaleTimeString("en-GB", {
+
+        const time = data.time?.toDate().toLocaleTimeString("en-GB", {
           hour: "2-digit",
           minute: "2-digit",
           hour12: false,
         });
-        newMessages.push({ ...doc.data(), id: doc.id, time: time });
-        console.log(newMessages);
+        return { ...data, id: doc.id, time: time ?? "N/A" };
       });
       setMessages(newMessages);
     });
 
     return () => unsubscribe;
-  }, []);
+  }, [currentConversationId]);
 
   return (
     <div className="flex flex-col overflow-y-auto mx-auto space-y-4 p-4 bg-white  rounded-lg max-h-[95vh]">

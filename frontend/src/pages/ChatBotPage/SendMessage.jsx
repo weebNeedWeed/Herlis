@@ -1,30 +1,41 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { IoSend } from "react-icons/io5";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../../../firebase";
+import { useNavigate } from "react-router-dom";
+import MenuItem from "../../components/ui/SideMenu/MenuItem";
 
-function SendMessage() {
+function SendMessage({ currentConversationId }) {
   const [value, setValue] = useState("");
+  const [CurrentConversation, setCurrentConv] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setCurrentConv(currentConversationId);
+  }, [currentConversationId]);
 
   const handleSendMessage = async (e) => {
     e.preventDefault();
 
-    if (value.trim() === "") {
-      alert("Enter valid message!");
+    if (!value.trim() || !currentConversationId) {
+      alert("Enter a valid message or select a conversation!");
       return;
     }
 
     try {
-      await addDoc(collection(db, "Chat text"), {
-        text: value,
-        name: "andy",
-        time: serverTimestamp(),
-        role: "user",
-      });
+      await addDoc(
+        collection(db, `Conversations/${CurrentConversation}/Messages`),
+        {
+          text: value,
+          name: "andy",
+          time: serverTimestamp(),
+          role: "user",
+        }
+      );
+      setValue("");
     } catch (error) {
-      console.log(error);
+      console.error("Error sending message: ", error);
     }
-    setValue("");
   };
 
   return (
