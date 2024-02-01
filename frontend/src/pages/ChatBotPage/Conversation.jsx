@@ -1,7 +1,7 @@
 import BotchatBox from "./BotChatBox";
 import { useEffect, useRef, useState } from "react";
-import robotHead from "../public/robot_head.png";
-import chatBotText from "../public/chatboxtext.png";
+import robotHead from "../assets/chatBot_head.svg";
+
 import SendMessage from "./SendMessage";
 
 function Conversation() {
@@ -39,9 +39,6 @@ function Conversation() {
       <div>
         <div className="image-container flex items-center justify-center ">
           <img src={robotHead} alt="Chat Logo"></img>
-        </div>
-        <div className="pr-1.5 image-container flex items-center justify-center">
-          <img src={chatBotText} alt="Chat Logo text"></img>
         </div>
       </div>
       {messages.map((message) => (
