@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { IoSend } from "react-icons/io5";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { db } from "../../../firebase";
+import { db } from "../../firebase/index";
 
 function SendMessage({ currentConversationId }) {
   const [value, setValue] = useState("");
@@ -17,21 +16,6 @@ function SendMessage({ currentConversationId }) {
     if (!value.trim() || !currentConversationId) {
       alert("Enter a valid message or select a conversation!");
       return;
-    }
-
-    try {
-      await addDoc(
-        collection(db, `Conversations/${CurrentConversation}/Messages`),
-        {
-          text: value,
-          name: "andy",
-          time: serverTimestamp(),
-          role: "user",
-        }
-      );
-      setValue("");
-    } catch (error) {
-      console.error("Error sending message: ", error);
     }
   };
 

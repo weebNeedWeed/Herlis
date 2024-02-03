@@ -1,14 +1,7 @@
 import BotchatBox from "./BotChatBox";
 import { useState, useEffect, useRef } from "react";
 import robotHead from "../assets/chatBot_head.svg";
-import {
-  collection,
-  query,
-  onSnapshot,
-  orderBy,
-  limit,
-} from "firebase/firestore";
-import { db } from "../../../firebase";
+import { db } from "../../firebase/index";
 
 function Conversation({ currentConversationId }) {
   const [messages, setMessages] = useState([]);
@@ -22,32 +15,6 @@ function Conversation({ currentConversationId }) {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
-
-  useEffect(() => {
-    if (!currentConversationId) return;
-
-    const messagesQuery = query(
-      collection(db, `Conversations/${currentConversationId}/Messages`),
-      orderBy("time"),
-      limit(50)
-    );
-
-    const unsubscribe = onSnapshot(messagesQuery, (querySnapshot) => {
-      const newMessages = querySnapshot.docs.map((doc) => {
-        const data = doc.data();
-
-        const time = data.time.toDate().toLocaleTimeString("en-GB", {
-          hour: "2-digit",
-          minute: "2-digit",
-          hour12: false,
-        });
-        return { ...data, id: doc.id, time: time ?? "N/A" };
-      });
-      setMessages(newMessages);
-    });
-
-    return () => unsubscribe;
-  }, [currentConversationId]);
 
   return (
     <div className="flex flex-col overflow-y-auto h-full mx-auto space-y-4 p-4 bg-neutral-100 rounded-lg max-h-[95vh]">

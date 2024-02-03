@@ -7,47 +7,12 @@ import { IoIosArrowForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import clsx from "clsx";
-import {
-  collection,
-  query,
-  onSnapshot,
-  orderBy,
-  deleteDoc,
-  limit,
-  doc,
-  getDocs,
-} from "firebase/firestore";
-import { addDoc, serverTimestamp } from "firebase/firestore";
-import { db } from "../../../firebase";
 
-const createConversation = async () => {
-  const conversationRef = await addDoc(collection(db, "Conversations"), {
-    createdAt: serverTimestamp(),
-  });
-
-  return conversationRef.id;
-};
+import { db } from "../../firebase/index";
 
 function ChatSideMenu({ selectConversation }) {
   const [conversations, setConversations] = useState([]);
   const navigate = useNavigate();
-  useEffect(() => {
-    const q = query(
-      collection(db, "Conversations"),
-      orderBy("createdAt", "desc"),
-      limit(50)
-    );
-
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      const loadedConversations = [];
-      querySnapshot.forEach((doc) => {
-        loadedConversations.push({ ...doc.data(), id: doc.id });
-      });
-      setConversations(loadedConversations);
-    });
-
-    return () => unsubscribe;
-  }, []);
 
   useEffect(() => {
     if (conversations.length == 0) {
@@ -61,28 +26,11 @@ function ChatSideMenu({ selectConversation }) {
   }, [conversations]);
 
   const handleAddnewConv = async () => {
-    const new_id = await createConversation();
+    console.log("Add conv pressed");
   };
 
   async function deleteCollectionAndSubcollections(db, collectionPath) {
-    await deleteSubcollections(db, `Conversations/${collectionPath}`);
-
-    await deleteDoc(doc(db, "Conversations", collectionPath));
-  }
-
-  async function deleteSubcollections(db, docPath) {
-    const subcollections = ["Messages"];
-
-    for (const subcollection of subcollections) {
-      const subcollectionRef = collection(db, `${docPath}/${subcollection}`);
-      const docsSnapshot = await getDocs(subcollectionRef);
-
-      for (const docSnapshot of docsSnapshot.docs) {
-        await deleteDoc(
-          doc(db, `${docPath}/${subcollection}/${docSnapshot.id}`)
-        );
-      }
-    }
+    console.log("deleteConversation pressed");
   }
 
   return (
