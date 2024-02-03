@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { IoSend } from "react-icons/io5";
-import { db } from "../../firebase/index";
 
 function SendMessage({ currentConversationId }) {
   const [value, setValue] = useState("");

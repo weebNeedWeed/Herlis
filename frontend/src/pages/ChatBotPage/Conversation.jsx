@@ -1,7 +1,6 @@
 import BotchatBox from "./BotChatBox";
 import { useState, useEffect, useRef } from "react";
 import robotHead from "../assets/chatBot_head.svg";
-import { db } from "../../firebase/index";
 
 function Conversation({ currentConversationId }) {
   const [messages, setMessages] = useState([]);

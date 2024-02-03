@@ -8,19 +8,17 @@ import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import clsx from "clsx";
 
-import { db } from "../../firebase/index";
-
 function ChatSideMenu({ selectConversation }) {
   const [conversations, setConversations] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (conversations.length == 0) {
-      navigate(`/chatbot`);
+      // navigate(`/chatbot`);
       selectConversation(null);
     } else {
       const id = conversations[0].id;
-      navigate(`/chatbot/${id}`);
+      // navigate(`/chatbot/${id}`);
       selectConversation(id);
     }
   }, [conversations]);
@@ -29,7 +27,7 @@ function ChatSideMenu({ selectConversation }) {
     console.log("Add conv pressed");
   };
 
-  async function deleteCollectionAndSubcollections(db, collectionPath) {
+  async function deleteCollectionAndSubcollections() {
     console.log("deleteConversation pressed");
   }
 
@@ -74,7 +72,7 @@ function ChatSideMenu({ selectConversation }) {
               </div>
               <button
                 onClick={() => {
-                  deleteCollectionAndSubcollections(db, conversation.id);
+                  deleteCollectionAndSubcollections(conversation.id);
                 }}
                 aria-label="Delete conversation"
                 className="ml-auto p-2"
