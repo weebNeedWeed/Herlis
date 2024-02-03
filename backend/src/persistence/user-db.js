@@ -17,6 +17,7 @@ export default function makeUserDb({db}) {
 
     async function insert({uid, ...userInfo}) {
         const userRef = db.collection(collectionName).doc(uid);
+        console.log(uid)
         await userRef.set({
             ...userInfo
         });

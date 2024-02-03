@@ -7,7 +7,7 @@ export default function buildMakeUser() {
         updatedAt = Date.now(),
         uid,
     }) {
-        if(!uid)
+        if(!uid) {
             throw new Error("Missing uid");
         }
 
@@ -15,16 +15,16 @@ export default function buildMakeUser() {
             throw new Error("FullName is empty");
         }
 
-        if(!gender)) {
+        if(!gender) {
             throw new Error("Invalid gender");
         }
 
-        if(!dateOfBirth)) {
+        if(!dateOfBirth) {
             throw new Error("Invalid date of birth");
         }
 
         // TODO: Validate phoneNumber later
-        if(!phoneNumber)) {
+        if(!phoneNumber) {
             throw new Error("Invalid phoneNumber");
         }
 

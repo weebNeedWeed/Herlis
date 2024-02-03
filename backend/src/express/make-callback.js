@@ -1,4 +1,4 @@
-export default function makeCallback({controller}) {
+export default function makeCallback(controller) {
     return (req, res) => {
         const httpRequest = Object.freeze({
             params: req.params,
@@ -14,8 +14,9 @@ export default function makeCallback({controller}) {
                 res.type("json");
                 res.status(httpResponse.statusCode)
                     .send(httpResponse.body);
-            }).catch(() => {
+            }).catch((err) => {
                 // TODO: add logging here
+                console.log(err);
                 res.type("json")
                     .status(500)
                     .send({ error: 'An unknown error occurred.' });

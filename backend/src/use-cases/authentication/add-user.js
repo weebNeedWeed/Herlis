@@ -8,10 +8,6 @@ export default function makeAddUser({userDb}) {
         gender,
         dateOfBirth,
     }) {
-        if(await userDb.findByUid(uid)) {
-            throw new Error("User already exists");
-        }
-
         const user = makeUser({
             uid,
             fullName,
@@ -20,7 +16,12 @@ export default function makeAddUser({userDb}) {
             dateOfBirth
         });
 
-        return await userDb.insert(user.getUid(),{
+        if(await userDb.findByUid(uid)) {
+            throw new Error("User already exists");
+        }
+
+        return await userDb.insert({
+            uid: user.getUid(),
             fullName: user.getFullName(),
             phoneNumber: user.getPhoneNumber(),
             gender: user.getGender(),

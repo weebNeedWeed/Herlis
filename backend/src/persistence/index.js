@@ -12,4 +12,4 @@ initializeApp({
 const db = getFirestore();
 const userDb = makeUserDb({db});
 
-export const { userDb };
+export { userDb };
