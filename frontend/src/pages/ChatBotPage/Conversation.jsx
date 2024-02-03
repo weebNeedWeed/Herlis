@@ -36,7 +36,7 @@ function Conversation({ currentConversationId }) {
       const newMessages = querySnapshot.docs.map((doc) => {
         const data = doc.data();
 
-        const time = data.time?.toDate().toLocaleTimeString("en-GB", {
+        const time = data.time.toDate().toLocaleTimeString("en-GB", {
           hour: "2-digit",
           minute: "2-digit",
           hour12: false,
@@ -50,7 +50,7 @@ function Conversation({ currentConversationId }) {
   }, [currentConversationId]);
 
   return (
-    <div className="flex flex-col overflow-y-auto mx-auto space-y-4 p-4 bg-white  rounded-lg max-h-[95vh]">
+    <div className="flex flex-col overflow-y-auto h-full mx-auto space-y-4 p-4 bg-neutral-100 rounded-lg max-h-[95vh]">
       <div>
         <div className="image-container flex items-center justify-center ">
           <img src={robotHead} alt="Chat Logo"></img>

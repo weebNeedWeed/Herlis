@@ -8,7 +8,7 @@ function BotchatBox({ children, messageInfo }) {
 
   const boxStyle =
     currentMessage.role == "user"
-      ? { box: "bg-neutral-100 rounded-s-xl rounded-se-xl", text: "text-black" }
+      ? { box: "bg-white rounded-s-xl rounded-se-xl", text: "text-black" }
       : { box: "bg-teal-500 rounded-e-xl rounded-es-xl", text: "text-white" };
 
   return (

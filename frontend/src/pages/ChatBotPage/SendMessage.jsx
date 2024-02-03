@@ -2,13 +2,10 @@ import { useState, useEffect } from "react";
 import { IoSend } from "react-icons/io5";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../../../firebase";
-import { useNavigate } from "react-router-dom";
-import MenuItem from "../../components/ui/SideMenu/MenuItem";
 
 function SendMessage({ currentConversationId }) {
   const [value, setValue] = useState("");
   const [CurrentConversation, setCurrentConv] = useState(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     setCurrentConv(currentConversationId);
@@ -39,30 +36,24 @@ function SendMessage({ currentConversationId }) {
   };
 
   return (
-    <div className=" left-0 bg-white">
+    <div className="flex justify-center items-center w-full p-4 bg-neutral-100">
       <form
-        className="relative flex w-full min-h-[2em] mx-auto"
+        className="flex items-center justify-between w-full max-w-2xl bg-white rounded-full shadow-lg"
         onSubmit={handleSendMessage}
       >
         <input
           type="text"
-          placeholder="Write your message!"
-          className="sticky flex-grow focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-12 bg-gray-200 rounded-md py-3"
+          placeholder="Type a message"
+          className="flex-grow bg-transparent focus:outline-none placeholder-gray-500 rounded-full py-4 px-6 text-lg"
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
-        <div className="flex items-center justify-center pl-4">
-          <button
-            type="button"
-            className="inline-flex items-center justify-center rounded-lg px-4 py-3 transition duration-500 ease-in-out text-white bg-teal-500 hover:bg-teal-500 focus:outline-none"
-            onClick={handleSendMessage}
-          >
-            <div className="flex pt-1">
-              <span className="font-bold text-xl">Send </span>
-              <IoSend className="h-6 w-6 ml-2 transform " />
-            </div>
-          </button>
-        </div>
+        <button
+          type="submit"
+          className="flex items-center justify-center text-white bg-[#228E8E] rounded-full p-4 ml-4 hover:bg-[#9bc0c0] focus:outline-none focus:ring focus:ring-[#9bc0c0]"
+        >
+          <IoSend className="text-2xl" />
+        </button>
       </form>
     </div>
   );

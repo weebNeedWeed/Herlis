@@ -16,11 +16,11 @@ function ChatBotPage() {
         <div className="flex-grow">
           <Conversation currentConversationId={currentConversationId} />
         </div>
-        <div className="sticky bottom-0 pl-2 pr-4 pt-5">
+        <div className="sticky bottom-0 pl-2 ">
           <SendMessage currentConversationId={currentConversationId} />
         </div>
       </div>
-      <div className="flex-shrink w-[min(14rem,20%)] ">
+      <div className="flex-shrink w-[min(20rem,40%)] bg-neutral-100">
         <ChatSideMenu selectConversation={selectConversation} />
       </div>
     </div>
