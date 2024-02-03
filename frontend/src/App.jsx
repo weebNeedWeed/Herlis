@@ -1,8 +1,11 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
-import ChatBotPage from "./pages/ChatBotPage/ChatBotPage";
+import ChatBotPage from "./pages/chatbot/ChatBotPage";
 import DefaultLayout from "./components/layout/DefaultLayout";
+import AuthLayout from "./components/layout/AuthLayout";
+import SignInPage from "./pages/auth/SignInPage";
+import { Navigate } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +24,20 @@ const router = createBrowserRouter([
         path: "chatbot/:conversationId",
         element: <ChatBotPage />,
       },
+    ],
+  },
+  {
+    path: "/auth",
+    element: <AuthLayout />,
+    children: [
+      {
+        index: true,
+        element: <Navigate to="/auth/signin" replace={true} />
+      },
+      {
+        path: "signin",
+        element: <SignInPage />
+      }
     ],
   },
   {
