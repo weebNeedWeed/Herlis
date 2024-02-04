@@ -15,7 +15,7 @@ export default function buildMakeUser() {
             throw new Error("FullName is empty");
         }
 
-        if(gender.localeCompare("male") !== 0 && gender.localeCompare("female") !== 0) {
+        if(!gender || (gender.localeCompare("male") !== 0 && gender.localeCompare("female") !== 0)) {
             throw new Error("Gender must be one of those: female, male");
         }
 

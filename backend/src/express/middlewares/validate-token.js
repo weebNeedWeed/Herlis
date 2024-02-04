@@ -11,10 +11,7 @@ export default async function validateToken(req, res, next) {
         req.decodedToken = decodedToken;
         next();
     } catch(err) {
-        logger.log({
-            level: "warn",
-            message: err
-        });
+        logger.error(err.message, {location: __filename});
         res.status(401).send({error: "Unauthorized"});
     }
 }

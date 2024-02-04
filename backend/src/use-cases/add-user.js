@@ -1,4 +1,4 @@
-import {makeUser} from "./../../entities";
+import {makeUser} from "./../entities";
 
 export default function makeAddUser({userDb}) {
     return async function addUser({

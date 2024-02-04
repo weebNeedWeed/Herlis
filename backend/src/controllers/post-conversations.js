@@ -1,21 +1,25 @@
-export default function makePostUser({addUser, logger}) {
-    return async function postUser(httpRequest) {
+export default function makePostConversations({createConversation, logger}) {
+    return async function postConversations(httpRequest) {
+        const {uid} = httpRequest.decodedToken;
         const headers = {
             "Content-Type": "application/json"
         };
         try {
-            const {uid} = httpRequest.decodedToken;
-            const user = await addUser({...httpRequest.body, uid});
+            const conversation = await createConversation({
+                userId: uid,
+                title: httpRequest.body.title
+            });
+
             return {
                 headers,
                 statusCode: 200,
-                body: user
+                body: conversation
             };
         } catch(err) {
             logger.error(err.message, {location: __filename});
             return {
                 headers,
-                statusCode: 400,
+                statusCode: 500,
                 body: {
                     error: err.message
                 }

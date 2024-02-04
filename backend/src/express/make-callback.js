@@ -20,10 +20,7 @@ export default function makeCallback(controller) {
                 res.status(httpResponse.statusCode)
                     .send(httpResponse.body);
             }).catch((err) => {
-                logger.log({
-                    level: "error",
-                    message: err
-                });
+                logger.error(err.message, {location: __filename});
                 res.type("json")
                     .status(500)
                     .send({ error: 'An unknown error occurred.' });
