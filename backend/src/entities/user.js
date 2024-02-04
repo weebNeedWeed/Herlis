@@ -2,7 +2,7 @@ export default function buildMakeUser() {
     return function makeUser({
         fullName,
         gender,
-        phoneNumber,
+        phoneNumber = "",
         dateOfBirth,
         updatedAt = Date.now(),
         uid,
@@ -15,8 +15,8 @@ export default function buildMakeUser() {
             throw new Error("FullName is empty");
         }
 
-        if(!gender) {
-            throw new Error("Invalid gender");
+        if(gender.localeCompare("male") !== 0 && gender.localeCompare("female") !== 0) {
+            throw new Error("Gender must be one of those: female, male");
         }
 
         if(!dateOfBirth) {
@@ -24,8 +24,7 @@ export default function buildMakeUser() {
         }
 
         // TODO: Validate phoneNumber later
-        if(!phoneNumber) {
-            throw new Error("Invalid phoneNumber");
+        if(phoneNumber) {
         }
 
         return Object.freeze({

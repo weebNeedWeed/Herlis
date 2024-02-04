@@ -9,7 +9,7 @@ export default function makeUserDb({db}) {
     async function findByUid(uid) {
         const userRef = db.collection(collectionName).doc(uid);
         const doc = await userRef.get();
-        if(!doc.exist) {
+        if(!doc.exists) {
             return null;
         }
         return doc.data();
@@ -17,7 +17,6 @@ export default function makeUserDb({db}) {
 
     async function insert({uid, ...userInfo}) {
         const userRef = db.collection(collectionName).doc(uid);
-        console.log(uid)
         await userRef.set({
             ...userInfo
         });

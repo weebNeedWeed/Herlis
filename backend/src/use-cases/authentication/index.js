@@ -1,4 +1,4 @@
-import {userDb} from "./../../persistence";
+import {userDb} from "./../../infrastructure/persistence";
 import makeAddUser from "./add-user";
 
 const addUser = makeAddUser({userDb});

@@ -1,15 +1,13 @@
 import {initializeApp, cert} from "firebase-admin/app";
 import {getFirestore} from "firebase-admin/firestore";
+import {getAuth} from "firebase-admin/auth";
 
 import credentials from "./../../credentials.json";
-
-import makeUserDb from "./user-db";
 
 initializeApp({
   credential: cert(credentials)
 });
 
 const db = getFirestore();
-const userDb = makeUserDb({db});
-
-export { userDb };
+const auth = getAuth();
+export { db, auth };
