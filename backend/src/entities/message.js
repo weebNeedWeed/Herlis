@@ -10,7 +10,7 @@ export default function buildMakeMessage({Id}) {
         }
 
         if(!sender 
-            || (sender.localeCompare("bot") !== 0 && sender.localeCompare("user") !== 0)) {
+            || (sender.localeCompare("model") !== 0 && sender.localeCompare("user") !== 0)) {
             throw new Error("Sender must be 'bot' or 'user'");
         }
 

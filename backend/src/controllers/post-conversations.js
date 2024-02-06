@@ -7,7 +7,7 @@ export default function makePostConversations({createConversation, logger}) {
         try {
             const conversation = await createConversation({
                 userId: uid,
-                title: httpRequest.body.title
+                firstMessage: httpRequest.body.firstMessage
             });
 
             return {

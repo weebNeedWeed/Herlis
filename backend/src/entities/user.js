@@ -7,6 +7,8 @@ export default function buildMakeUser() {
         updatedAt = Date.now(),
         uid,
     }) {
+        const allowedGenders = ["male", "female", "other"];
+
         if(!uid) {
             throw new Error("Missing uid");
         }
@@ -15,8 +17,8 @@ export default function buildMakeUser() {
             throw new Error("FullName is empty");
         }
 
-        if(!gender || (gender.localeCompare("male") !== 0 && gender.localeCompare("female") !== 0)) {
-            throw new Error("Gender must be one of those: female, male");
+        if(!gender || !allowedGenders.includes(gender)) {
+            throw new Error("Gender must be one of those: female, male and other");
         }
 
         if(!dateOfBirth) {

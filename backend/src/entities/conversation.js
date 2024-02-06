@@ -16,6 +16,10 @@ export default function buildMakeConversation({Id}) {
             throw new Error("Invalid conversationId");
         }
 
+        if(!title || title.trim().length === 0) {
+            title = "A conversation created at " + createdAt;
+        }
+
         const _messages = [];
         if(messages.length !== 0) {
             messages.forEach(m => addMessage(m))
@@ -32,6 +36,7 @@ export default function buildMakeConversation({Id}) {
         function addMessage({sender, content, id, createdAt}) {
             const message = makeMessage({sender, content, id,  createdAt});
             _messages.push(message);
+            return message;
         }
     }
 }

@@ -1,5 +1,6 @@
 import express from "express";
-import router from "./routes";
+import "dotenv/config";
+import router from "./express/routes";
 
 const app = express()
 const port = 3000
