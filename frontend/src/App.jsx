@@ -4,8 +4,11 @@ import NotFoundPage from "./pages/NotFoundPage";
 import ChatBotPage from "./pages/chatbot/ChatBotPage";
 import DefaultLayout from "./components/layout/DefaultLayout";
 import AuthLayout from "./components/layout/AuthLayout";
-import SignInPage from "./pages/auth/SignInPage";
+import SignInPage from "./pages/auth//SignIn/SignInPage";
+import ForgotPasswordPage from "./pages/auth//SignIn/ForgotPassword";
+import SignUpPage from "./pages/auth/SignUp/SignUpPage";
 import { Navigate } from "react-router-dom";
+import { AuthContextProvider } from "./contexts/AuthContext";
 
 const router = createBrowserRouter([
   {
@@ -32,12 +35,20 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Navigate to="/auth/signin" replace={true} />
+        element: <Navigate to="/auth/signin" replace={true} />,
       },
       {
         path: "signin",
-        element: <SignInPage />
-      }
+        element: <SignInPage />,
+      },
+      {
+        path: "signup",
+        element: <SignUpPage />,
+      },
+      {
+        path: "forgot-password",
+        element: <ForgotPasswordPage />,
+      },
     ],
   },
   {
@@ -47,7 +58,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <AuthContextProvider>
+      <RouterProvider router={router} />
+    </AuthContextProvider>
+  );
 }
 
 export default App;
