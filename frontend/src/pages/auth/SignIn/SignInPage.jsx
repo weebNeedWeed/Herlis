@@ -8,14 +8,6 @@ import useGoogleLogin from "../../../hooks/useGoogleLogin";
 import Input from "./../../../components/form/Input";
 import Button from "../../../components/form/Button";
 
-const emailValidation = {
-    required: "Vui lòng nhập địa chỉ email"
-}
-
-const passwordValidation = {
-    required: "Vui lòng nhập mật khẩu"
-}
-
 function SignInPage() {
     const [rememberMe, setRememberMe] = useState(false);
     const passwordLogin = useEmailAndPasswordLogin();
@@ -45,14 +37,16 @@ function SignInPage() {
     return (
         <FormProvider {...methods}>
             <form className="w-full" onSubmit={onSubmit}>
-                <div className="text-center pb-5 text-3xl">Đăng nhập</div>
+                <h2 className="text-center pb-5 text-3xl">Đăng nhập</h2>
                 {/*Nhập email */}
                 <Input
                     name="email"
                     label="Email"
                     type="email"
                     placeholder="Nhập địa chỉ email"
-                    validation={emailValidation}
+                    validation={{
+                        required: "Vui lòng nhập địa chỉ email"
+                    }}
                 />
 
                 {/*Nhập mật khẩu */}
@@ -61,7 +55,9 @@ function SignInPage() {
                     placeholder="Nhập mật khẩu"
                     name="password"
                     label="Mật khẩu"
-                    validation={passwordValidation}
+                    validation={{
+                        required: "Vui lòng nhập mật khẩu"
+                    }}
                 />
                 {/* Box remember me và quên mật khẩu*/}
                 <div className="mb-4 flex justify-between">
