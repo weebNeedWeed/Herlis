@@ -1,6 +1,6 @@
 import {makeUser} from "./../entities";
 
-export default function makeAddUser({userDb}) {
+export default function makeAddUser({userDb, IsoDate}) {
     return async function addUser({
         uid,
         fullName,
@@ -25,7 +25,7 @@ export default function makeAddUser({userDb}) {
             fullName: user.getFullName(),
             phoneNumber: user.getPhoneNumber(),
             gender: user.getGender(),
-            dateOfBirth: user.getDateOfBirth()
+            dateOfBirth: IsoDate.formatISO(user.getDateOfBirth()),
         });
     }
 }

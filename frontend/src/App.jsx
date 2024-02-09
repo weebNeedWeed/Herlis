@@ -8,6 +8,7 @@ import SignInPage from "./pages/auth//SignIn/SignInPage";
 import ForgotPasswordPage from "./pages/auth//SignIn/ForgotPassword";
 import SignUpPage from "./pages/auth/SignUp/SignUpPage";
 import { Navigate } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 const router = createBrowserRouter([
   {
@@ -56,9 +57,13 @@ const router = createBrowserRouter([
   },
 ]);
 
+const queryClient = new QueryClient();
+
 function App() {
   return (
-    <RouterProvider router={router} />
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   );
 }
 

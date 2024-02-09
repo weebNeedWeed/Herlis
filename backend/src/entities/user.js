@@ -1,10 +1,10 @@
-export default function buildMakeUser() {
+export default function buildMakeUser({IsoDate}) {
     return function makeUser({
         fullName,
         gender,
         phoneNumber = "",
         dateOfBirth,
-        updatedAt = Date.now(),
+        updatedAt = new Date(),
         uid,
     }) {
         const allowedGenders = ["male", "female", "other"];
@@ -21,7 +21,8 @@ export default function buildMakeUser() {
             throw new Error("Gender must be one of those: female, male and other");
         }
 
-        if(!dateOfBirth) {
+        dateOfBirth = IsoDate.parseISO(dateOfBirth);
+        if(!IsoDate.isValid(dateOfBirth)){
             throw new Error("Invalid date of birth");
         }
 
