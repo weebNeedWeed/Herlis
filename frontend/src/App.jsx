@@ -8,7 +8,6 @@ import SignInPage from "./pages/auth//SignIn/SignInPage";
 import ForgotPasswordPage from "./pages/auth//SignIn/ForgotPassword";
 import SignUpPage from "./pages/auth/SignUp/SignUpPage";
 import { Navigate } from "react-router-dom";
-import { AuthContextProvider } from "./contexts/AuthContext";
 
 const router = createBrowserRouter([
   {
@@ -59,9 +58,7 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <AuthContextProvider>
-      <RouterProvider router={router} />
-    </AuthContextProvider>
+    <RouterProvider router={router} />
   );
 }
 
