@@ -1,60 +1,28 @@
 import React from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { useForm, Controller, Form, FormProvider } from "react-hook-form";
-import DatePicker from "react-datepicker"; // Corrected import to match the CSS import
+import { useForm, Controller, FormProvider } from "react-hook-form";
+import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { NavLink } from "react-router-dom";
-import { useAuthContext } from "../../../contexts/AuthContext";
-import auth from "../../../firebase/index";
-import { useState, useEffect } from "react";
 import Button from "../../../components/form/Button";
 import Input from "../../../components/form/Input";
+import { useSignUpContext } from "../../../contexts/SignUpContext";
 
 function InformationForm() {
+  const [, dispatch] = useSignUpContext();
   const methods = useForm();
   const {
     register,
-    handleSubmit,
     control,
+    handleSubmit,
     formState: { errors },
   } = methods;
 
-  const [user, dispatch] = useAuthContext();
-  const [error, setError] = useState(null);
-
-
-  const onSubmit = (data) => {
-    console.log(data)
-    // createUserWithEmailAndPassword(
-    //   auth,
-    //   user.user_auth.email,
-    //   user.user_auth.password
-    // )
-    //   .then((userCredential) => {
-    //     console.log("User account created successfully", userCredential.user);
-    //     dispatch({
-    //       type: "SET_USER_INFOR",
-    //       payload: data,
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     if (error.code === "auth/email-already-in-use") {
-    //       setError("Tài khoản đã được đăng ký");
-    //     } else {
-    //       setError("Error during signup: ", error);
-    //     }
-    //   });
-  };
-
-  useEffect(() => {
-    if (user) {
-      console.log("User context has been updated", user.user_auth);
-    }
-  }, [user]);
+  const onSubmit = handleSubmit((data) => {
+    dispatch({ type: "SUBMIT_INFORMATION_FORM", payload: data });
+  });
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={handleSubmit(onSubmit)} className="w-full">
+      <form onSubmit={onSubmit} className="w-full mb-4">
         <h2 className="text-center pb-5 text-3xl">Đăng ký</h2>
         <Input
           type="text"

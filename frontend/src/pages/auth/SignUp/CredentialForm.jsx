@@ -2,18 +2,20 @@ import { FormProvider, useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import Input from "../../../components/form/Input";
 import Button from "../../../components/form/Button";
+import { useSignUpContext } from "../../../contexts/SignUpContext";
 
 function CredentialForm() {
 	const methods = useForm();
 	const { handleSubmit, watch } = methods;
+	const [, dispatch] = useSignUpContext();
 
 	const onSubmit = handleSubmit((data) => {
-		console.log(data);
+		dispatch({ type: "SUBMIT_CREDENTIAL_FORM", payload: data })
 	});
 
 	return <FormProvider {...methods}>
 		<form onSubmit={onSubmit} className="w-full">
-			<div className="text-center pb-5 text-3xl">Đăng ký</div>
+			<h2 className="text-center pb-5 text-3xl">Đăng ký</h2>
 
 			{/* Email input */}
 			<Input
@@ -58,7 +60,7 @@ function CredentialForm() {
 			/>
 
 			{/* Submit button */}
-			< Button >
+			<Button>
 				Tiếp tục
 			</Button>
 
