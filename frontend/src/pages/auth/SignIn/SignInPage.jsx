@@ -1,33 +1,43 @@
 import { useState, } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import useEmailAndPasswordLogin from "../../../hooks/useEmailAndPasswordLogin";
 import useGoogleLogin from "../../../hooks/useGoogleLogin";
 import Input from "./../../../components/form/Input";
 import Button from "../../../components/form/Button";
+import { toast } from "react-toastify";
 
 function SignInPage() {
     const [rememberMe, setRememberMe] = useState(false);
     const passwordLogin = useEmailAndPasswordLogin();
     const googleLogin = useGoogleLogin();
-
+    const navigate = useNavigate();
     const methods = useForm();
     const {
         handleSubmit,
+        setError
     } = methods;
 
     const onSubmit = handleSubmit(async (data) => {
         try {
             await passwordLogin(data.email, data.password, rememberMe);
+            toast.success("Đăng nhập thành công");
+            navigate("/", { replace: true });
         } catch (err) {
+            if (err.code === "auth/invalid-credential") {
+                setError("email", { type: "required", message: "Sai tài khoản hoặc mật khẩu" })
+                return;
+            }
+
+            toast.error("Có lỗi xảy ra, vui lòng thử lại");
         }
     });
 
     const handleGoogleLogin = async () => {
         try {
-            await googleLogin();
+            //await googleLogin();
         } catch (err) {
 
         }

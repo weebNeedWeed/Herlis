@@ -4,6 +4,8 @@ import { SignUpContextProvider, useSignUpContext } from "../../../contexts/SignU
 import { useEffect } from "react";
 import useEmailAndPasswordRegister from "../../../hooks/useEmailAndPasswordRegister";
 import useStoreUserInformation from "../../../hooks/useStoreUserInformation";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUpPage() {
   return (
@@ -14,12 +16,24 @@ export default function SignUpPage() {
 }
 
 function HandleSignUpComponent() {
-  const [state,] = useSignUpContext()
+  const [state, dispatch] = useSignUpContext()
   const passwordRegister = useEmailAndPasswordRegister();
-  const { mutate, error, data } = useStoreUserInformation();
+  const { mutate, isError, isSuccess } = useStoreUserInformation();
+  const navigate = useNavigate();
   const { stepDone, signUpMethod } = state;
 
-  console.log(error, data)
+  useEffect(() => {
+    if (isError) {
+      toast.error("Có lỗi xảy ra, vui lòng thử lại");
+    }
+  }, [isError]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("Đăng ký thành công, đang dăng nhập...");
+      navigate("/", { replace: true });
+    }
+  }, [isSuccess]);
 
   useEffect(() => {
     if (stepDone !== 2)
@@ -31,13 +45,18 @@ function HandleSignUpComponent() {
           fullName, phoneNumber, gender, dateOfBirth } = state;
         try {
           const result = await passwordRegister(email, password);
-          console.log({ fullName, phoneNumber, gender, dateOfBirth })
           mutate({
             token: await result.user.getIdToken(false),
             information: { fullName, phoneNumber, gender, dateOfBirth }
           });
         } catch (err) {
-          // TODO: duplicated email handle
+          if (err.code === "auth/email-already-in-use") {
+            toast.error("Tài khoản đã có người sử dụng");
+            dispatch({ type: "RESET" });
+            return;
+          }
+
+          toast.error("Có lỗi xảy ra, vui lòng thử lại");
         }
       }
     })();

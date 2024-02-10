@@ -9,6 +9,8 @@ import ForgotPasswordPage from "./pages/auth//SignIn/ForgotPassword";
 import SignUpPage from "./pages/auth/SignUp/SignUpPage";
 import { Navigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const router = createBrowserRouter([
   {
@@ -62,6 +64,7 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
+      <ToastContainer />
       <RouterProvider router={router} />
     </QueryClientProvider>
   );
