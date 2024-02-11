@@ -1,6 +1,6 @@
-import BotchatBox from "./BotChatBox";
 import { useState, useEffect, useRef } from "react";
 import robotHead from "../assets/chatBot_head.svg";
+import Message from "./Message";
 
 function Conversation({ currentConversationId }) {
   const [messages, setMessages] = useState([]);
@@ -16,18 +16,19 @@ function Conversation({ currentConversationId }) {
   }, [messages]);
 
   return (
-    <div className="flex flex-col overflow-y-auto h-full mx-auto space-y-4 p-4 bg-neutral-100 rounded-lg max-h-[95vh]">
-      <div>
-        <div className="image-container flex items-center justify-center ">
-          <img src={robotHead} alt="Chat Logo"></img>
-        </div>
-      </div>
-      {messages.map((message) => (
+    <div className="flex flex-col grow gap-y-3 overflow-y-auto p-2">
+      <img className="self-center w-28" src={robotHead} alt="ChatBot Logo"></img>
+
+
+      {/* {messages.map((message) => (
         <BotchatBox key={message.id} messageInfo={message}>
           {message.text}
         </BotchatBox>
       ))}
-      <div ref={messagesEndRef} />
+      <div ref={messagesEndRef} /> */}
+      <Message message={{ sender: "model", text: "hello" }} />
+      <Message message={{ sender: "user", text: "hello" }} />
+      <Message message={{ sender: "user", text: "hello" }} />
     </div>
   );
 }

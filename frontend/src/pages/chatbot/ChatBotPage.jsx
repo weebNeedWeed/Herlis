@@ -11,18 +11,14 @@ function ChatBotPage() {
   };
 
   return (
-    <div className="flex">
-      <div className="flex flex-col h-screen flex-grow">
-        <div className="flex-grow">
-          <Conversation currentConversationId={currentConversationId} />
-        </div>
-        <div className="sticky bottom-0 pl-2 ">
-          <SendMessage currentConversationId={currentConversationId} />
-        </div>
+    <div className="h-full w-full flex">
+      <div className="flex flex-col w-full h-full relative">
+        <Conversation currentConversationId={currentConversationId} />
+        <SendMessage currentConversationId={currentConversationId} />
       </div>
-      <div className="flex-shrink w-[min(20rem,40%)] bg-neutral-100">
+      {/* <div className="flex-shrink w-[min(20rem,40%)] bg-neutral-100">
         <ChatSideMenu selectConversation={selectConversation} />
-      </div>
+      </div> */}
     </div>
   );
 }

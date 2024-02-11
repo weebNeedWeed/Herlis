@@ -9,7 +9,7 @@ import { FaRegUserCircle } from "react-icons/fa";
 function SideMenu() {
     const [grow, setGrow] = useState(false);
     return (
-        <div className={clsx("transition-all bg-app max-w-[35%] min-w-20 flex flex-col items-center justify-start", grow ? "w-[14rem]" : "w-0")}>
+        <div className={clsx("transition-all bg-app max-w-[35%] min-w-20 flex flex-col items-center justify-start shadow-md shadow-slate-400", grow ? "w-[14rem]" : "w-0")}>
             <div className="w-full h-full flex flex-col items-center justify-start text-white px-4">
                 <div className="flex w-full justify-end py-5">
                     <button onClick={() => setGrow(_ => !_)}>

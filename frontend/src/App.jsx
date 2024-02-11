@@ -64,7 +64,7 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ToastContainer />
+      <ToastContainer closeOnClick />
       <RouterProvider router={router} />
     </QueryClientProvider>
   );
