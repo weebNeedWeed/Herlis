@@ -1,6 +1,6 @@
 import {makeUser} from "./../entities";
 
-export default function makeAddUser({userDb, IsoDate}) {
+export default function makeAddUser({userDb}) {
     return async function addUser({
         uid,
         fullName,
@@ -14,7 +14,7 @@ export default function makeAddUser({userDb, IsoDate}) {
             phoneNumber,
             gender,
             dateOfBirth
-        });
+        }); // user.dateOfBirth is Date
 
         if(await userDb.findByUid(uid)) {
             throw new Error("User already exists");
@@ -25,7 +25,8 @@ export default function makeAddUser({userDb, IsoDate}) {
             fullName: user.getFullName(),
             phoneNumber: user.getPhoneNumber(),
             gender: user.getGender(),
-            dateOfBirth: IsoDate.formatISO(user.getDateOfBirth()),
+            dateOfBirth: user.getDateOfBirth().getTime(), // Timestamp
+            conversationIds: user.getConversationIds(),
         });
     }
 }

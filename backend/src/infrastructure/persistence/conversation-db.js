@@ -4,7 +4,8 @@ export default function makeConversationDb({db}) {
     return Object.freeze({
         insert,
         findById,
-        update
+        update,
+        findAll
     });
 
     async function insert({id, ...conversationInfo}) {
@@ -26,5 +27,27 @@ export default function makeConversationDb({db}) {
             .doc(id);
         await convRef.update(conversationInfo);
         return {id, ...conversationInfo};
+    }
+
+    async function findAll({userId, cursor = null, pageSize = 10}) { 
+        const convRef = db.collection(collectionName);
+        let res = convRef;
+        if(userId) {
+            res = convRef.where("userId", "==", userId);
+        }
+        res = res.orderBy("createdAt");
+        if(cursor) {
+            cursor = await convRef.doc(cursor).get();
+            if(cursor.exists) 
+                res = res.startAfter(cursor);
+        }
+        res = await res.limit(pageSize)
+            .get();
+        const result = [];
+        res.forEach(doc => result.push({
+            ...doc.data(),
+            id: doc.id
+        }));
+        return result;
     }
 }

@@ -22,7 +22,7 @@ function DefaultLayout() {
             <div className="flex w-full h-full items-stretch">
                 <SideMenu />
 
-                <div className="grow bg-neutral-100 p-4">
+                <div className="grow bg-neutral-100">
                     <Outlet />
                 </div>
             </div>

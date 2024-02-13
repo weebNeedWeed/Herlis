@@ -1,11 +1,15 @@
-export default function makePostUser({addUser, logger}) {
+export default function makePostUser({addUser, logger, IsoDate}) {
     return async function postUser(httpRequest) {
         const headers = {
             "Content-Type": "application/json"
         };
         try {
             const {uid} = httpRequest.decodedToken;
-            const user = await addUser({...httpRequest.body, uid});
+            const dateOfBirth = IsoDate.parseISO(httpRequest.body.dateOfBirth); // Date
+            const user = await addUser({
+                ...httpRequest.body, 
+                dateOfBirth,
+                uid});
             return {
                 headers,
                 statusCode: 200,

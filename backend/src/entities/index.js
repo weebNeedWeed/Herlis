@@ -5,8 +5,8 @@ import Id from "./../utils/Id";
 import IsoDate from "./../utils/IsoDate";
 
 const makeUser = buildMakeUser({IsoDate});
-const makeConversation = buildMakeConversation({Id});
-const makeMessage = buildMakeMessage({Id});
+const makeConversation = buildMakeConversation({Id, IsoDate});
+const makeMessage = buildMakeMessage({Id, IsoDate});
 
 export {
     makeUser,

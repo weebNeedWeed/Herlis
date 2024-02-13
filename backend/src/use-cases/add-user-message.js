@@ -24,12 +24,12 @@ export default function makeAddUserMessage({conversationDb, getGeminiResponse}) 
             id: conversation.getId(),
             title: conversation.getTitle(),
             userId: conversation.getUserId(),
-            createdAt: conversation.getCreatedAt(),
+            createdAt: conversation.getCreatedAt().getTime(),
             messages: conversation.getMessages().map(x => ({
                 id: x.getId(),
                 content: x.getContent(),
                 sender: x.getSender(),
-                createdAt: x.getCreatedAt()
+                createdAt: x.getCreatedAt().getTime(),
             })),
         });
                 

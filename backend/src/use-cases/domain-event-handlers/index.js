@@ -1,5 +1,9 @@
 import DomainEventEmitter from "./../../utils/DomainEventEmitter";
-import * as DomainEvents from "./../../entities/domain-events";
-import userMessageAddedHandler from "./user-message-added-handler";
+import makeConversationCreatedHandler from "./conversation-created-handler";
+import {makeUser} from "./../../entities";
+import {userDb} from "./../../infrastructure/persistence";
+import logger from "./../../infrastructure/logging-init";
+import IsoDate from "./../../utils/IsoDate";
 
-DomainEventEmitter.on(DomainEvents.USER_MESSAGE_ADDED, userMessageAddedHandler);
+//DomainEventEmitter.on("CONVERSATION_CREATED", 
+//    makeConversationCreatedHandler({makeUser, userDb, logger, IsoDate}));

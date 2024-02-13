@@ -11,6 +11,7 @@ import { Navigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import SignOutPage from "./pages/auth/SignOutPage";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
         path: "forgot-password",
         element: <ForgotPasswordPage />,
       },
+      {
+        path: "signout",
+        element: <SignOutPage />
+      }
     ],
   },
   {

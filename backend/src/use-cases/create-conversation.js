@@ -3,7 +3,8 @@ import {makeConversation} from "./../entities";
 export default function makeCreateConversation({
     conversationDb,
     userDb,
-    getGeminiResponse
+    getGeminiResponse,
+    DomainEventEmitter
 }) {
     return async function createConversation({
         userId,
@@ -27,17 +28,21 @@ export default function makeCreateConversation({
         conversation.addMessage(
             {sender: "model", content: response.text()});
 
-        return await conversationDb.insert({
+        const insertedConversation = await conversationDb.insert({
             id: conversation.getId(),
             title: conversation.getTitle(),
             userId: conversation.getUserId(),
-            createdAt: conversation.getCreatedAt(),
+            createdAt: conversation.getCreatedAt().getTime(),
             messages: conversation.getMessages().map(x => ({
                 id: x.getId(),
                 content: x.getContent(),
                 sender: x.getSender(),
-                createdAt: x.getCreatedAt()
+                createdAt: x.getCreatedAt().getTime(),
             })),
         });
+
+        // DomainEventEmitter.emit("CONVERSATION_CREATED", conversation); // do nothing
+
+        return insertedConversation;
     }
 }

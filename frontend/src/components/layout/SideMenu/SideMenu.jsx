@@ -5,6 +5,7 @@ import { IoChatbubblesOutline } from "react-icons/io5";
 import { useState } from "react";
 import clsx from "clsx";
 import { FaRegUserCircle } from "react-icons/fa";
+import { VscSignOut } from "react-icons/vsc";
 
 function SideMenu() {
     const [grow, setGrow] = useState(false);
@@ -26,8 +27,14 @@ function SideMenu() {
                     grow={grow} />
                 <MenuItem
                     to="/chatbot"
-                    label="Chat bot"
+                    label="Trò chuyện"
                     icon={<IoChatbubblesOutline className="text-2xl" />}
+                    grow={grow} />
+                <MenuItem
+                    to="/auth/signout"
+                    label="Đăng xuất"
+                    className="text-red-500 font-semibold hover:bg-red-400/[.4]"
+                    icon={<VscSignOut className="text-2xl" />}
                     grow={grow} />
 
             </div>

@@ -4,7 +4,7 @@ export default function buildMakeUser({IsoDate}) {
         gender,
         phoneNumber = "",
         dateOfBirth,
-        updatedAt = new Date(),
+        conversationIds = [],
         uid,
     }) {
         const allowedGenders = ["male", "female", "other"];
@@ -21,7 +21,7 @@ export default function buildMakeUser({IsoDate}) {
             throw new Error("Gender must be one of those: female, male and other");
         }
 
-        dateOfBirth = IsoDate.parseISO(dateOfBirth);
+        dateOfBirth = new Date(dateOfBirth);
         if(!IsoDate.isValid(dateOfBirth)){
             throw new Error("Invalid date of birth");
         }
@@ -36,7 +36,12 @@ export default function buildMakeUser({IsoDate}) {
             getGender: () => gender,
             getPhoneNumber: () => phoneNumber,
             getDateOfBirth: () => dateOfBirth,
-            getUpdatedAt: () => updatedAt,
+            getConversationIds: () => [...conversationIds],
+            addConversationId
         });
+
+        function addConversationId(id) {
+            conversationIds.push(id);
+        }
     }
 }

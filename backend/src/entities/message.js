@@ -1,4 +1,4 @@
-export default function buildMakeMessage({Id}) {
+export default function buildMakeMessage({Id, IsoDate}) {
     return function makeMessage({
         sender,
         content, 
@@ -16,6 +16,11 @@ export default function buildMakeMessage({Id}) {
 
         if(!content.trim()) {
             throw new Error("Invalid content");
+        }
+
+        createdAt = new Date(createdAt);
+        if(!IsoDate.isValid(createdAt)) {
+            throw new Error("Invalid date");
         }
 
         return Object.freeze({

@@ -3,7 +3,8 @@ export default function makeUserDb({db}) {
 
     return Object.freeze({
         findByUid,
-        insert
+        insert,
+        update,
     });
 
     async function findByUid(uid) {
@@ -12,7 +13,7 @@ export default function makeUserDb({db}) {
         if(!doc.exists) {
             return null;
         }
-        return doc.data();
+        return {uid, ...doc.data()};
     }
 
     async function insert({uid, ...userInfo}) {
@@ -21,5 +22,12 @@ export default function makeUserDb({db}) {
             ...userInfo
         });
         return {uid, ...userInfo};
+    }
+
+    async function update({uid, ...userInfo}) {
+        const userRef = db.collection(collectionName)
+            .doc(uid);
+        await userRef.update(userInfo);
+        return {uid, userInfo};
     }
 }

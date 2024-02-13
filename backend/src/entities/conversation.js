@@ -1,6 +1,6 @@
 import {makeMessage} from "./";
 
-export default function buildMakeConversation({Id}) {
+export default function buildMakeConversation({Id, IsoDate}) {
     return function makeConversation({
         createdAt = Date.now(),
         userId,
@@ -16,8 +16,13 @@ export default function buildMakeConversation({Id}) {
             throw new Error("Invalid conversationId");
         }
 
+        createdAt = new Date(createdAt);
+        if(!IsoDate.isValid(createdAt)) {
+            throw new Error("Invalid date");
+        }
+
         if(!title || title.trim().length === 0) {
-            title = "A conversation created at " + createdAt;
+            title = createdAt.toLocaleString();
         }
 
         const _messages = [];

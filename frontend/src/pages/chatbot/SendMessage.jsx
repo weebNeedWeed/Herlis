@@ -1,25 +1,9 @@
 import { useState, useEffect } from "react";
 import { IoSend } from "react-icons/io5";
 
-function SendMessage({ currentConversationId }) {
-  const [value, setValue] = useState("");
-  const [CurrentConversation, setCurrentConv] = useState(null);
-
-  useEffect(() => {
-    setCurrentConv(currentConversationId);
-  }, [currentConversationId]);
-
-  const handleSendMessage = async (e) => {
-    e.preventDefault();
-
-    if (!value.trim() || !currentConversationId) {
-      alert("Enter a valid message or select a conversation!");
-      return;
-    }
-  };
-
+function SendMessage() {
   return (
-    <div className="flex justify-center items-center w-full p-4 pb-0 bottom-0 sticky">
+    <div className="flex justify-center items-center w-full px-4 pb-4 bottom-0 sticky">
       <form
         className="flex items-center w-full bg-white rounded-full shadow-lg gap-x-3"
       >
