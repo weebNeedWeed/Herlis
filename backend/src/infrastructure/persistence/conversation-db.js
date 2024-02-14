@@ -35,7 +35,7 @@ export default function makeConversationDb({db}) {
         if(userId) {
             res = convRef.where("userId", "==", userId);
         }
-        res = res.orderBy("createdAt");
+        res = res.orderBy("createdAt", "desc");
         if(cursor) {
             cursor = await convRef.doc(cursor).get();
             if(cursor.exists) 

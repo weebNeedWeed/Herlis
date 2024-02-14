@@ -8,7 +8,6 @@ export default function useIdToken() {
 	const [token, setToken] = useState("default-token");
 	useEffect(() => {
 		const unsub = onAuthStateChanged(auth, (user) => {
-			console.log(user);
 			if (!user) {
 				setToken(undefined);
 				return;

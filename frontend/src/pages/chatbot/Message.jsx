@@ -17,12 +17,14 @@ function Message({ message }) {
           {sender === "user" ? "Bạn" : "Herlis"}
         </span>
 
-        <span className="text-base mb-1">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti minus esse, fugiat corrupti exercitationem tempora temporibus ex, nostrum repellat nisi provident a odit sit fuga dolorem cum optio eum! Repellendus.
+        <span className="text-base mb-3">
+          {content}
         </span>
 
         <span className="absolute bottom-2 right-2 text-xs">
-          12:32
+          {new Date(createdAt).toLocaleTimeString(
+            [], { hour: "2-digit", minute: "2-digit" }
+          )}
         </span>
       </div>
     </div>

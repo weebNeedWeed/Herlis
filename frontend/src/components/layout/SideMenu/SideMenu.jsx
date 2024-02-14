@@ -26,7 +26,7 @@ function SideMenu() {
                     icon={<BiHome className="text-2xl" />}
                     grow={grow} />
                 <MenuItem
-                    to="/chatbot"
+                    to="/chat"
                     label="Trò chuyện"
                     icon={<IoChatbubblesOutline className="text-2xl" />}
                     grow={grow} />

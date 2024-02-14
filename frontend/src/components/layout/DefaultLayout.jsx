@@ -8,7 +8,6 @@ function DefaultLayout() {
     const token = useIdToken();
     const navigate = useNavigate();
     useEffect(() => {
-        console.log(token);
         if (!token) {
             // Chuyen den trang dang nhap neu user chua dang nhap
             console.log(token);
