@@ -12,14 +12,16 @@ function Message({ message }) {
 
   return (
     <div className={clsx("flex w-full", alignmentClass)}>
-      <div className={clsx("flex-col flex max-w-80 min-w-28 px-4 py-2.5 shadow-md relative", boxStyle)}>
+      <div className={clsx("flex-col flex shadow-md relative",
+        "px-4 py-2.5 min-w-32 max-w-[60%]",
+        boxStyle)}>
         <span className="text-sm font-bold">
           {sender === "user" ? "Bạn" : "Herlis"}
         </span>
 
-        <span className="text-base mb-3">
+        <pre className="text-base mb-3 text-wrap font-sans">
           {content}
-        </span>
+        </pre>
 
         <span className="absolute bottom-2 right-2 text-xs">
           {new Date(createdAt).toLocaleTimeString(

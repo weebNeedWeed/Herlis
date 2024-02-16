@@ -16,6 +16,7 @@ function Conversation() {
         content: "Xin chào, hôm nay cậu thế nào ?",
         createdAt: Date.now()
       }} />
+
       {messages.map((m, i) => (
         <Message key={m.id ?? i} message={m} />
       ))}

@@ -1,0 +1,106 @@
+{
+	"podcasts": [
+		{
+			"to": "https://open.spotify.com/episode/25BdxkZBLWjRIt0GwL2mhR",
+			"name": "Khi bạn đổ bệnh, mọi ước mơ sẽ biến mất",
+			"image": "https://as2.ftcdn.net/v2/jpg/06/59/75/03/1000_F_659750302_oh2PPCFWxITD8ZZvhwNfiht9ACGoOOw7.jpg",
+			"owner": "Nguyễn Hữu Trí",
+			"time": 31
+		},
+		{
+			"to": "https://open.spotify.com/episode/7xPGJAP6pw99NhPWFrvosP",
+			"name": "Bỏ ít đi, để nhận lại nhiều hơn",
+			"image": "https://as2.ftcdn.net/v2/jpg/06/24/10/31/1000_F_624103118_TZnDp6CRAXFruBnjch2rFYPrYRv2qRn1.jpg",
+			"owner": "Nguyễn Hữu Trí",
+			"time": 36
+		},
+		{
+			"to": "https://open.spotify.com/episode/4gz62D2IjD38i27Aygm4lP",
+			"name": "Kiệt sức sau ngày dài khiến ta lười vận động",
+			"image": "https://as2.ftcdn.net/v2/jpg/06/27/00/35/1000_F_627003529_WLNIRaYMNDQawZW11LCdzX6SFaZrULJt.jpg",
+			"owner": "Nguyễn Hữu Trí",
+			"time": 44
+		},
+		{
+			"to": "https://open.spotify.com/episode/3sCrdexA39Dun6ahlGMFT0",
+			"name": "Vòng luẩn quẩn của việc đặt mục tiêu",
+			"image": "https://as1.ftcdn.net/v2/jpg/06/30/39/60/1000_F_630396080_Xr2rQIrXXqB6OggBEtUOqA1JW4LWkXGK.jpg",
+			"owner": "Nguyễn Hữu Trí",
+			"time": 22
+		},
+		{
+			"to": "https://open.spotify.com/episode/0DN84drmxtaqzD0RTZhhj8",
+			"name": "Khi đứa trẻ hiểu chuyện không còn kẹo ăn",
+			"image": "https://as1.ftcdn.net/v2/jpg/05/71/47/96/1000_F_571479644_e0qWYJsVYMP63dHxzQUV2kahztkTK4BF.jpg",
+			"owner": "Nguyễn Hữu Trí",
+			"time": 21
+		}
+	],
+	"musics": [
+		{
+			"to": "https://open.spotify.com/track/5AQQYMkVL7216ZVuPytjwL",
+			"name": "Somisonic",
+			"image": "https://i.scdn.co/image/ab67616d00001e02685bf9d53d834e92d7f19bbb",
+			"owner": "Broken Peak",
+			"time": 3
+		},
+		{
+			"to": "https://open.spotify.com/track/0gGV5b1xukai7PntTpPFBR",
+			"name": "Sunsets",
+			"image": "https://i.scdn.co/image/ab67616d00001e0217f8a5a059067bcc5d908a54",
+			"owner": "Siona Swin",
+			"time": 2
+		},
+		{
+			"to": "https://open.spotify.com/track/475L4j7qFaZE0jlcvrsScN",
+			"name": "Protect your mind",
+			"image": "https://i.scdn.co/image/ab67616d00001e0284a6e37e6466571222fff8fb",
+			"owner": "Treasures Meditation Flow",
+			"time": 3
+		},
+		{
+			"to": "https://open.spotify.com/track/7k59hF8Vc7Ob9HYO8fnbLF",
+			"name": "Inner peace",
+			"image": "https://i.scdn.co/image/ab67616d00001e02d6b32b56c232423b228794c2",
+			"owner": "Sabrina McGregor",
+			"time": 3
+		},
+		{
+			"to": "https://open.spotify.com/track/3c5WbBcDJ1alHlGToeOZYP",
+			"name": "Breathe",
+			"image": "https://i.scdn.co/image/ab67616d00001e02d2813765cfae1c7082b90340",
+			"owner": "Sunset Chamber",
+			"time": 4
+		},
+		{
+			"to": "https://open.spotify.com/track/0SS2wjdAkBg03Hu6vmVY22",
+			"name": "Andromeda",
+			"image": "https://i.scdn.co/image/ab67616d00001e020d8144671a1b1b705902a41d",
+			"owner": "Melodycloud",
+			"time": 3
+		}
+	],
+	"exercises": [
+		{
+			"to": "https://www.youtube.com/watch?v=dAqQqmaI9vY",
+			"name": "Yoga",
+			"image": "https://i.scdn.co/image/ab67616d00001e020d8144671a1b1b705902a41d",
+			"owner": "Fit Tuber",
+			"time": 30
+		},
+		{
+			"to": "https://www.youtube.com/watch?v=acUZdGd_3Dg",
+			"name": "Thở sâu",
+			"image": "https://as2.ftcdn.net/v2/jpg/06/80/36/69/1000_F_680366933_KCoF6BHP8SjM8wKPRMDQ4oQaifSBX1Db.jpg",
+			"owner": "Michelle Kenway",
+			"time": 3
+		},
+		{
+			"to": "https://www.youtube.com/watch?v=DbDoBzGY3vo",
+			"name": "Thiền",
+			"image": "https://as1.ftcdn.net/v2/jpg/05/71/85/86/1000_F_571858618_h3GQwtVm0RkJ8HkKh5aa1Ci1VN01DKpW.jpg",
+			"owner": "Take a deep breath",
+			"time": 5
+		}
+	]
+}

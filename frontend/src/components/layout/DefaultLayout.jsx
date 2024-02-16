@@ -3,6 +3,7 @@ import SideMenu from "./SideMenu/SideMenu";
 import useIdToken from "./../../hooks/useIdToken";
 import { useEffect, } from "react";
 import { toast } from "react-toastify";
+import BottomMenu from "./BottomMenu/BottomMenu";
 
 function DefaultLayout() {
     const token = useIdToken();
@@ -17,13 +18,21 @@ function DefaultLayout() {
         }
     }, [token]);
     return (
-        <div className="font-baloo-tamma fixed w-screen h-screen">
-            <div className="flex w-full h-full items-stretch">
+        <div className="font-baloo-tamma fixed w-screen h-screen max-w-[100vw]">
+            <div className="w-full h-full items-stretch hidden md:flex">
                 <SideMenu />
 
-                <div className="grow bg-neutral-100">
+                <div className="grow bg-neutral-100 overflow-auto">
                     <Outlet />
                 </div>
+            </div>
+
+            <div className="w-full h-full flex flex-col md:hidden">
+                <div className="grow overflow-auto">
+                    <Outlet />
+                </div>
+
+                <BottomMenu />
             </div>
         </div>
     );

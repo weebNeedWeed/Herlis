@@ -4,6 +4,7 @@ const initialStates = {
 	ableToSubmit: true,
 	messages: [],
 	id: "",
+	openHistoriesBox: false,
 };
 
 const reducer = (state, action) => {
@@ -42,6 +43,11 @@ const reducer = (state, action) => {
 				...action.payload
 			}
 		}
+		case "SET_OPEN_BOX_STATUS":
+			return {
+				...state,
+				openHistoriesBox: action.payload
+			}
 		default:
 			return state;
 	}
