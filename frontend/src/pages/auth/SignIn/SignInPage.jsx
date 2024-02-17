@@ -8,6 +8,7 @@ import useGoogleLogin from "../../../hooks/useGoogleLogin";
 import Input from "./../../../components/form/Input";
 import Button from "../../../components/form/Button";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet-async";
 
 function SignInPage() {
     const [rememberMe, setRememberMe] = useState(false);
@@ -45,6 +46,9 @@ function SignInPage() {
 
     return (
         <FormProvider {...methods}>
+            <Helmet>
+                <title>Đăng nhập</title>
+            </Helmet>
             <form className="w-full" onSubmit={onSubmit}>
                 <h2 className="text-center pb-5 text-3xl">Đăng nhập</h2>
                 {/*Nhập email */}

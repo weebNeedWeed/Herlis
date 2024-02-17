@@ -12,6 +12,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import SignOutPage from "./pages/auth/SignOutPage";
+import { HelmetProvider } from "react-helmet-async";
 
 const router = createBrowserRouter([
   {
@@ -69,8 +70,10 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ToastContainer closeOnClick />
-      <RouterProvider router={router} />
+      <HelmetProvider>
+        <ToastContainer closeOnClick />
+        <RouterProvider router={router} />
+      </HelmetProvider>
     </QueryClientProvider>
   );
 }

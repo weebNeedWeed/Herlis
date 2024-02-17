@@ -9,6 +9,7 @@ import useCreateConversation from "../../hooks/useCreateConversation";
 import useIdToken from "../../hooks/useIdToken";
 import useGetConversationById from "../../hooks/useGetConversationById";
 import useAddMessage from "../../hooks/useAddMessage";
+import { Helmet } from "react-helmet-async";
 
 function ChatBotPage() {
   const { id } = useParams();
@@ -74,6 +75,9 @@ function ChatBotPageHandler({ id }) {
 
   return (
     <div className="h-full w-full flex">
+      <Helmet>
+        <title>Trò chuyện</title>
+      </Helmet>
       <div className="flex flex-col w-full h-full relative grow gap-y-2">
         <TopMenu />
         <Conversation />

@@ -6,10 +6,14 @@ import useEmailAndPasswordRegister from "../../../hooks/useEmailAndPasswordRegis
 import useStoreUserInformation from "../../../hooks/useStoreUserInformation";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 export default function SignUpPage() {
   return (
     <SignUpContextProvider>
+      <Helmet>
+        <title>Đăng ký</title>
+      </Helmet>
       <HandleSignUpComponent />
     </SignUpContextProvider>
   );
