@@ -6,7 +6,7 @@ import clsx from "clsx";
 export default function Card({ image, title, time, owner, to, className }) {
 	return (
 		<Link to={to} className={clsx(
-			"relative w-48 h-56 bg-red-100 rounded-xl overflow-hidden shrink-0",
+			"relative bg-red-100 rounded-xl overflow-hidden shrink-0",
 			className)}>
 			<img
 				src={image}

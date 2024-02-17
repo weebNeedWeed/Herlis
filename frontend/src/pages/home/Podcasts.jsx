@@ -17,6 +17,7 @@ export default function Podcasts() {
 							owner={elm.owner}
 							to={elm.to}
 							key={i}
+							className="w-48 h-56"
 						/>
 					))}
 				</div>
