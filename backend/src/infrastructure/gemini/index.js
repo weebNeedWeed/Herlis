@@ -5,7 +5,7 @@ import {
 } from "@google/generative-ai";
 import {DEFAULT_HISTORY} from "./default-history";
 
-const MODEL_NAME = "gemini-pro";
+const MODEL_NAME = "gemini-1.0-pro";
 const API_KEY = process.env.GEMINI_API_KEY;
 const genAI = new GoogleGenerativeAI(API_KEY);
 const model = genAI.getGenerativeModel({ model: MODEL_NAME });
