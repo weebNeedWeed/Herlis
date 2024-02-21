@@ -1,5 +1,7 @@
 import clsx from "clsx";
+import { Converter } from "showdown";
 
+const converter = new Converter();
 function Message({ message }) {
   const { sender, content, createdAt } = message;
   const alignmentClass =
@@ -19,9 +21,12 @@ function Message({ message }) {
           {sender === "user" ? "Bạn" : "Herlis"}
         </span>
 
-        <pre className="text-base mb-3 text-wrap font-sans">
+        {sender === "user" && <pre className="text-base mb-3 text-wrap font-sans">
           {content}
-        </pre>
+        </pre>}
+
+        {sender === "model"
+          && <div className="text-base mb-3 text-wrap font-sans" dangerouslySetInnerHTML={{ __html: converter.makeHtml(content) }} />}
 
         <span className="absolute bottom-2 right-2 text-xs">
           {new Date(createdAt).toLocaleTimeString(

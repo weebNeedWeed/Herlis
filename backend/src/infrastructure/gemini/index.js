@@ -3,7 +3,7 @@ import {
     HarmCategory,
     HarmBlockThreshold,
 } from "@google/generative-ai";
-import {DEFAULT_HISTORY} from "./default-history";
+import { DEFAULT_HISTORY } from "./default-history";
 
 const MODEL_NAME = "gemini-1.0-pro";
 const API_KEY = process.env.GEMINI_API_KEY;
@@ -11,8 +11,8 @@ const genAI = new GoogleGenerativeAI(API_KEY);
 const model = genAI.getGenerativeModel({ model: MODEL_NAME });
 
 const generationConfig = {
-    temperature: 1,
-    topK: 3,
+    temperature: 0.9,
+    topK: 2,
     topP: 1,
     maxOutputTokens: 2048,
 };
@@ -39,7 +39,7 @@ const safetySettings = [
 export default async function getGeminiResponse(inputText, conversation) {
     const convHistory = conversation.getMessages().map(x => ({
         role: x.getSender(),
-        parts: [{text: x.getContent()}]
+        parts: [{ text: x.getContent() }]
     }));
     const chat = model.startChat({
         generationConfig,

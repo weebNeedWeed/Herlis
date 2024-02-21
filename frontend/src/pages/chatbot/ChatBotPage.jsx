@@ -10,6 +10,7 @@ import useIdToken from "../../hooks/useIdToken";
 import useGetConversationById from "../../hooks/useGetConversationById";
 import useAddMessage from "../../hooks/useAddMessage";
 import { Helmet } from "react-helmet-async";
+import EventSourceListener from "./EventSourceListener";
 
 function ChatBotPage() {
   const { id } = useParams();
@@ -84,6 +85,7 @@ function ChatBotPageHandler({ id }) {
         <SendMessage />
       </div>
       <ConversationHistories />
+      <EventSourceListener />
     </div>
   );
 }
