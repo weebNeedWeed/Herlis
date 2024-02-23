@@ -16,6 +16,7 @@ export default function makePostConversations({createConversation, logger}) {
                 body: conversation
             };
         } catch(err) {
+            console.log(err);
             logger.error(err.message, {location: __filename});
             return {
                 headers,
