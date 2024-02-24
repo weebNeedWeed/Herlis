@@ -1,6 +1,6 @@
-import {makeMessage} from "./";
+import { makeMessage } from "./";
 
-export default function buildMakeConversation({Id, IsoDate}) {
+export default function buildMakeConversation({ Id, IsoDate }) {
     return function makeConversation({
         createdAt = Date.now(),
         userId,
@@ -8,25 +8,25 @@ export default function buildMakeConversation({Id, IsoDate}) {
         title = "",
         messages = [],
     }) {
-        if(!userId) {
+        if (!userId) {
             throw new Error("Invalid userId");
         }
 
-        if(!Id.isValidId(id)) {
+        if (!Id.isValidId(id)) {
             throw new Error("Invalid conversationId");
         }
 
         createdAt = new Date(createdAt);
-        if(!IsoDate.isValid(createdAt)) {
+        if (!IsoDate.isValid(createdAt)) {
             throw new Error("Invalid date");
         }
 
-        if(!title || title.trim().length === 0) {
+        if (!title || title.trim().length === 0) {
             title = createdAt.toLocaleString();
         }
 
         const _messages = [];
-        if(messages.length !== 0) {
+        if (messages.length !== 0) {
             messages.forEach(m => addMessage(m))
         }
         return Object.freeze({
@@ -38,8 +38,8 @@ export default function buildMakeConversation({Id, IsoDate}) {
             addMessage
         });
 
-        function addMessage({sender, content, id, createdAt}) {
-            const message = makeMessage({sender, content, id,  createdAt});
+        function addMessage({ sender, content, id, createdAt, visible }) {
+            const message = makeMessage({ sender, content, id, createdAt, visible });
             _messages.push(message);
             return message;
         }

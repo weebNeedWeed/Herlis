@@ -4,4 +4,10 @@ import makeConversationDb from "./conversation-db";
 
 const userDb = makeUserDb({db});
 const conversationDb = makeConversationDb({db});
-export {userDb, conversationDb};
+
+const runTransaction = db.runTransaction;
+export {
+    userDb,
+    conversationDb, 
+    runTransaction,
+};

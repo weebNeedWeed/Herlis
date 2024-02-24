@@ -3,7 +3,8 @@ export default function buildMakeMessage({Id, IsoDate}) {
         sender,
         content, 
         createdAt = Date.now(), 
-        id = Id.createId() 
+        id = Id.createId(),
+        visible = true,
     }) {
         if(!Id.isValidId(id)) {
             throw new Error("Invalid id");
@@ -27,7 +28,8 @@ export default function buildMakeMessage({Id, IsoDate}) {
             getId: () => id,
             getSender: () => sender,
             getContent: () => content,
-            getCreatedAt: () => createdAt
+            getCreatedAt: () => createdAt,
+            getVisible: () => visible,
         });
     }
 

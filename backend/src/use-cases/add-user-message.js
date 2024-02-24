@@ -34,9 +34,6 @@ export default function makeAddUserMessage({
 
         const result = await conversationDb.update({
             id: conversation.getId(),
-            title: conversation.getTitle(),
-            userId: conversation.getUserId(),
-            createdAt: conversation.getCreatedAt().getTime(),
             messages: conversation.getMessages().map(x => ({
                 id: x.getId(),
                 content: x.getContent(),

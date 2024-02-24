@@ -1,4 +1,4 @@
-export default function makeConversationDb({db}) {
+export default function makeConversationDb({ db }) {
     const collectionName = "conversations";
 
     return Object.freeze({
@@ -8,37 +8,37 @@ export default function makeConversationDb({db}) {
         findAll
     });
 
-    async function insert({id, ...conversationInfo}) {
+    async function insert({ id, ...conversationInfo }) {
         const convRef = db.collection(collectionName)
             .doc(id);
         await convRef.set(conversationInfo);
-        return {id, ...conversationInfo};
+        return { id, ...conversationInfo };
     }
 
     async function findById(id) {
         const convRef = db.collection(collectionName)
             .doc(id);
         const doc = await convRef.get();
-        return doc.exists ? {...doc.data(), id} : null;
+        return doc.exists ? { ...doc.data(), id } : null;
     }
 
-    async function update({id, ...conversationInfo}) {
+    async function update({ id, ...conversationInfo }) {
         const convRef = db.collection(collectionName)
             .doc(id);
         await convRef.update(conversationInfo);
-        return {id, ...conversationInfo};
+        return { id, ...conversationInfo };
     }
 
-    async function findAll({userId, cursor = null, pageSize = 10}) { 
+    async function findAll({ userId, cursor = null, pageSize = 10 }) {
         const convRef = db.collection(collectionName);
         let res = convRef;
-        if(userId) {
+        if (userId) {
             res = convRef.where("userId", "==", userId);
         }
         res = res.orderBy("createdAt", "desc");
-        if(cursor) {
+        if (cursor) {
             cursor = await convRef.doc(cursor).get();
-            if(cursor.exists) 
+            if (cursor.exists)
                 res = res.startAfter(cursor);
         }
         res = await res.limit(pageSize)
