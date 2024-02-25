@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import Exercises from "./Exercises";
 import Musics from "./Musics";
 import Podcasts from "./Podcasts";
-import SearchBar from "./SearchBar";
+import SearchBar from "./../../components/SearchBar";
 
 function HomePage() {
     return (

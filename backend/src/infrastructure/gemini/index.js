@@ -12,7 +12,7 @@ const model = genAI.getGenerativeModel({ model: MODEL_NAME });
 
 const generationConfig = {
     temperature: 0.9,
-    topK: 1,
+    topK: 3,
     topP: 1,
     maxOutputTokens: 1200,
 };
@@ -37,16 +37,16 @@ const safetySettings = [
 ];
 
 export default async function getGeminiResponse(inputText, conversation) {
-    const convHistory = conversation.getMessages()
-        .filter(x => x.getVisible())
-        .map(x => ({
-            role: x.getSender(),
-            parts: [{ text: x.getContent() }]
-        }));
+    // const convHistory = conversation.getMessages()
+    //     .filter(x => x.getVisible())
+    //     .map(x => ({
+    //         role: x.getSender(),
+    //         parts: [{ text: x.getContent() }]
+    // }));
     const chat = model.startChat({
         generationConfig,
         safetySettings,
-        history: DEFAULT_HISTORY.concat(convHistory),
+        history: DEFAULT_HISTORY,
     });
 
     const result = await chat.sendMessage(inputText);

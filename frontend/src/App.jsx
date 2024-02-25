@@ -13,6 +13,8 @@ import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import SignOutPage from "./pages/auth/SignOutPage";
 import { HelmetProvider } from "react-helmet-async";
+import DoctorsPage from "./pages/doctor/DoctorsPage";
+import SpecificDoctorPage from "./pages/doctor/SpecificDoctorPage";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +33,14 @@ const router = createBrowserRouter([
         path: "chat/:id",
         element: <ChatBotPage />,
       },
+      {
+        path: "doctors",
+        element: <DoctorsPage />
+      },
+      {
+        path: "doctors/:id",
+        element: <SpecificDoctorPage />
+      }
     ],
   },
   {

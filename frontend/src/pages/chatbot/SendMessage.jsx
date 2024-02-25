@@ -23,13 +23,12 @@ function SendMessage() {
         onSubmit={handleSubmit}
         className="flex items-center w-full bg-white rounded-full shadow-lg gap-x-3 md:h-16 h-12"
       >
-        <textarea
-          rows="1"
+        <input
           placeholder="Chào cậu, Herlis..."
           className="font-sans grow h-full bg-transparent outline-none placeholder-gray-500 rounded-full resize-none py-3 pl-5 text-md md:py-4 md:pl-6 md:text-lg"
           value={message}
           onChange={handleChange}
-        ></textarea>
+        />
         <button
           type="submit"
           className={clsx("flex items-center justify-center text-white bg-[#228E8E] rounded-full hover:bg-[#9bc0c0] focus:outline-none focus:ring focus:ring-[#9bc0c0]",

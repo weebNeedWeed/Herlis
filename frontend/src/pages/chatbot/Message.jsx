@@ -13,7 +13,7 @@ function Message({ message }) {
       : "bg-teal-500 rounded-e-xl rounded-es-xl text-white"
 
   return (
-    <div className={clsx("flex w-full", alignmentClass)}>
+    <div className={clsx("flex w-full mt-3", alignmentClass)}>
       <div className={clsx("flex-col flex shadow-md relative",
         "px-4 py-2.5 min-w-32 max-w-[60%]",
         boxStyle)}>

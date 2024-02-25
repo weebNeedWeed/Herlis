@@ -11,6 +11,7 @@ import useGetConversationById from "../../hooks/useGetConversationById";
 import useAddMessage from "../../hooks/useAddMessage";
 import { Helmet } from "react-helmet-async";
 import EventSourceListener from "./EventSourceListener";
+import { toast } from "react-toastify";
 
 function ChatBotPage() {
   const { id } = useParams();
@@ -24,10 +25,10 @@ export default ChatBotPage;
 
 function ChatBotPageHandler({ id }) {
   const [state, dispatch] = useConversationContext();
-  const { mutate: createMutate, data: createResult, isSuccess: createIsSuccess } = useCreateConversation();
+  const { mutate: createMutate, data: createResult, isSuccess: createIsSuccess, isError: createIsError } = useCreateConversation();
   const { mutate: getMutate, data: getResult, isSuccess: getIsSuccess }
     = useGetConversationById();
-  const { mutate: addMutate, data: addResult, isSuccess: addIsSuccess }
+  const { mutate: addMutate, data: addResult, isSuccess: addIsSuccess, isError: addIsError }
     = useAddMessage();
   const token = useIdToken();
 
@@ -65,14 +66,22 @@ function ChatBotPageHandler({ id }) {
     if (addIsSuccess) {
       dispatch({ type: "ADD_MODEL_MESSAGE", payload: addResult.data.content })
     }
-  }, [addIsSuccess]);
+
+    if (addIsError) {
+      dispatch({ type: "ADD_MODEL_MESSAGE", payload: "Xin lỗi cậu, tớ không thể trả lời tin nhắn này" })
+    }
+  }, [addIsSuccess, addIsError]);
 
   useEffect(() => {
     if (createIsSuccess) {
       const data = createResult.data;
       dispatch({ type: "LOAD_CONVERSATION", payload: data });
     }
-  }, [createIsSuccess]);
+
+    if (createIsError) {
+      toast.error("Có lỗi xảy ra, vui lòng thử lại");
+    }
+  }, [createIsSuccess, createIsError]);
 
   return (
     <div className="h-full w-full flex">

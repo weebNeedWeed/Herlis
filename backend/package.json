@@ -15,6 +15,7 @@
     "@aws-sdk/client-sqs": "^3.515.0",
     "@google/generative-ai": "^0.2.0",
     "@paralleldrive/cuid2": "^2.2.2",
+    "@zilliz/milvus2-sdk-node": "^2.3.5",
     "cors": "^2.8.5",
     "date-fns": "^3.3.1",
     "dotenv": "^16.4.1",

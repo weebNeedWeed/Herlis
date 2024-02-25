@@ -1,25 +1,25 @@
 const {
-  GoogleGenerativeAI,
-  HarmCategory,
-  HarmBlockThreshold,
+    GoogleGenerativeAI,
+    HarmCategory,
+    HarmBlockThreshold,
 } = require("@google/generative-ai");
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API);
-const embedModel = genAI.getGenerativeModel({ model: "embedding-001"});
-const extractModel = genAI.getGenerativeModel({ model: "gemini-1.0-pro"});
+const embedModel = genAI.getGenerativeModel({ model: "embedding-001" });
+const extractModel = genAI.getGenerativeModel({ model: "gemini-1.0-pro" });
 
-exports.getEmbedding = async function(text) {
+exports.getEmbedding = async function (text) {
     const result = await embedModel.embedContent(text);
-    const embedding = result.embedding;  
+    const embedding = result.embedding;
     return embedding.values;
 }
 
-exports.extractSymptoms = async function(text) {
+exports.extractSymptoms = async function (text) {
     const generationConfig = {
-        temperature: 1,
-        topK: 2,
+        temperature: 0.9,
+        topK: 1,
         topP: 1,
-        maxOutputTokens: 100,
+        maxOutputTokens: 150,
     };
 
     const safetySettings = [

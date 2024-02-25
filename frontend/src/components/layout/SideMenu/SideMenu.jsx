@@ -6,6 +6,7 @@ import { useState } from "react";
 import clsx from "clsx";
 import { FaRegUserCircle } from "react-icons/fa";
 import { VscSignOut } from "react-icons/vsc";
+import { MdOutlineHealthAndSafety } from "react-icons/md";
 
 function SideMenu() {
     const [grow, setGrow] = useState(false);
@@ -32,6 +33,11 @@ function SideMenu() {
                     to="/chat"
                     label="Trò chuyện"
                     icon={<IoChatbubblesOutline className="text-2xl" />}
+                    grow={grow} />
+                <MenuItem
+                    to="/doctors"
+                    label="Bác sĩ"
+                    icon={<MdOutlineHealthAndSafety className="text-2xl" />}
                     grow={grow} />
                 <MenuItem
                     to="/auth/signout"

@@ -85,7 +85,6 @@ function SignInPage() {
                         </span>
                     </label>
                     <Link
-                        to={`/auth/forgot-password`}
                         className="text-sm text-indigo-600 hover:text-indigo-500"
                     >
                         Quên mật khẩu ?
